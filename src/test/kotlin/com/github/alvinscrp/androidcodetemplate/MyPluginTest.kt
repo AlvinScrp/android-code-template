@@ -1,5 +1,7 @@
 package com.github.alvinscrp.androidcodetemplate
 
+import com.android.tools.idea.wizard.template.underscoreToLowerCamelCase
+import com.github.alvinscrp.androidcodetemplate.generator.util.layoutPrefix
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.components.service
 import com.intellij.psi.xml.XmlFile
@@ -35,5 +37,18 @@ class MyPluginTest : BasePlatformTestCase() {
         assertNotSame(projectService.getRandomNumber(), projectService.getRandomNumber())
     }
 
+    fun testUnderscoreToCamelCase(){
+        underscoreToLowerCamelCase("sd_te").let {
+            println(it)
+            assertEquals(it,"sdTe")
+        }
+
+        layoutPrefix("SD_TE","SsddDefggDD").let{
+            println(it)
+            println(underscoreToLowerCamelCase(it))
+        }
+
+
+    }
     override fun getTestDataPath() = "src/test/testData/rename"
 }
